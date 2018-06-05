@@ -1,8 +1,6 @@
 # Phore-iOS
 Welcome to the Phore Mobile Wallet for iOS. This Wallet is built with React Native using the React-Native CLI. 
 
-More information at https://github.com/react-community/create-react-native-app.
-
 ```
 
 npm install -g react-native-cli
