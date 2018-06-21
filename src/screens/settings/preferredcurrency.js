@@ -1,1 +1,0 @@
-preferredcurrency.js
