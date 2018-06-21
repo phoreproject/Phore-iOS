@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { View } from "react-native";
 import {
   Container,
   Header,
@@ -13,12 +14,16 @@ import {
   Right,
   Icon,
   Form,
-  Text
+  Text,
+  List,
+  ListItem,
+  Badge
 } from "native-base";
-import styles from "./styles";
+import styles from "./styles1";
 
 class BackupMnemonic extends Component {
   render() {
+    const datas = ["artefact", "intact", "reward", "frog", "bid", "save", "hover", "fork", "gather", "liquid", "earth", "thunderfurnace", "fragile", "motion", "ten", "staff", "cave", "quality", "secret", "best", "exotic", "lake", "six"]
     return (
       <Container style={styles.container}>
         <Header>
@@ -36,29 +41,27 @@ class BackupMnemonic extends Component {
         </Header>
 
         <Content>
-          <Form>
-            <Text style={{alignSelf: 'center'}}>Amount</Text>
-            <Item floatingLabel>
-              <Label style={{alignSelf: 'center'}}>PHR</Label>
-              <Input />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>0 USD</Text>
-            <Button transparent block dark style={styles.mb15}>
-            <Text>ADD ALL</Text>
-          </Button>
-           <Text style={{alignSelf: 'center'}}>Address</Text>
-           <Item>
-              <Input placeholder="Write address or label name" />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>Description</Text>
-            <Item>
-              <Input placeholder="Add a description" />
-            </Item>
-           <Button bordered dark block style={{ margin: 15, marginTop: 50 }}>
-            <Text>Send</Text>
-          </Button>
-          </Form>
-          <Text style={{alignSelf: 'center'}}>Fee is not included in the total amount</Text>
+          
+            <Text style={{alignSelf: 'center'}}>Please write this in a safe place and in horizontal order. You will need them to restore your wallet.</Text>
+           
+            <Text style={{alignSelf: 'center'}}>Do not share these words with anyone. Be careful, whoever has these words is the owner of the coins!</Text>
+            <View
+            style={{ flexDirection: "row" }}
+          >
+          <List
+            dataArray={datas}
+            horizontal={true}
+            renderRow={data =>
+              <ListItem>
+          <Badge info style={styles.mb15}>
+            <Text>{data}</Text>
+          </Badge>
+            </ListItem>}
+         />
+
+          </View>
+            
+         
 
           
         </Content>
