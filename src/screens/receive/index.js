@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { View } from "react-native";
 import {
   Container,
   Header,
@@ -16,9 +17,13 @@ import {
   Text
 } from "native-base";
 import styles from "./styles";
+import QRCode from 'react-native-qrcode';
 
 class Receive extends Component {
   render() {
+    const data = {
+      pkeystring: 'PQaCDkkHXDVkbeWtoq1guLcvcmypsEXWJC',
+    };
     return (
       <Container style={styles.container}>
         <Header>
@@ -38,29 +43,28 @@ class Receive extends Component {
         </Header>
 
         <Content>
-          <Form>
-            <Text style={{alignSelf: 'center'}}>Amount</Text>
-            <Item floatingLabel>
-              <Label style={{alignSelf: 'center'}}>PHR</Label>
-              <Input />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>0 USD</Text>
-            <Button transparent block dark style={styles.mb15}>
-            <Text>ADD ALL</Text>
+
+          <QRCode
+            value={data.pkeystring}
+            size={200}
+            bgColor='black'
+            fgColor='white' />
+          
+          <Text style={{alignSelf: 'center'}}>{data.pkeystring}</Text>
+          
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <Button bordered success style={styles.mb15}>
+            <Text>Save</Text>
           </Button>
-           <Text style={{alignSelf: 'center'}}>Address</Text>
-           <Item>
-              <Input placeholder="Write address or label name" />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>Description</Text>
-            <Item>
-              <Input placeholder="Add a description" />
-            </Item>
-           <Button bordered dark block style={{ margin: 15, marginTop: 50 }}>
-            <Text>Send</Text>
+            <Button bordered success style={styles.mb15}>
+            <Text>Share</Text>
           </Button>
-          </Form>
-          <Text style={{alignSelf: 'center'}}>Fee is not included in the total amount</Text>
+          </View>
+
+         
+
 
           
         </Content>
