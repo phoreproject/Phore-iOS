@@ -1,4 +1,4 @@
-import RealmSchemas from '../../../realm/RealmSchemas';
+import RealmSchemas from '../../realm/RealmSchemas';
 
 let addressService = {
 	save: function(obj) {
@@ -31,7 +31,7 @@ let addressService = {
 
 	find: function(address){
 		let list = RealmSchemas.objects('Address');
-		return list.filtered('address = '+ address =' ')[0];
+		return list.filtered('address = '+ address)[0];
 	}
 }
 
