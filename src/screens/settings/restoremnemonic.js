@@ -36,30 +36,91 @@ class RestoreMnemonic extends Component {
         </Header>
 
         <Content>
+          
+          <Text style={{alignSelf: 'center'}}>To restore your wallet you must enter the 24 words of your mnemonic code in the right order</Text>
           <Form>
-            <Text style={{alignSelf: 'center'}}>Amount</Text>
-            <Item floatingLabel>
-              <Label style={{alignSelf: 'center'}}>PHR</Label>
-              <Input />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>0 USD</Text>
-            <Button transparent block dark style={styles.mb15}>
-            <Text>ADD ALL</Text>
-          </Button>
-           <Text style={{alignSelf: 'center'}}>Address</Text>
-           <Item>
-              <Input placeholder="Write address or label name" />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>Description</Text>
-            <Item>
-              <Input placeholder="Add a description" />
-            </Item>
-           <Button bordered dark block style={{ margin: 15, marginTop: 50 }}>
-            <Text>Send</Text>
-          </Button>
-          </Form>
-          <Text style={{alignSelf: 'center'}}>Fee is not included in the total amount</Text>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+         <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+         <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+          <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
+         <Item regular style={{ marginLeft: 15, margin: 15, marginTop: 15 }}>
+              <Input placeholder="" />
+          </Item>
 
+          <Button bordered dark block style={{ margin: 15, marginTop: 15 }}
+           onPress={() => this.props.navigation.navigate("RestoreWallet")}>
+            <Text>Confirm</Text>
+          </Button>
+
+          </Form>
           
         </Content>
       </Container>
