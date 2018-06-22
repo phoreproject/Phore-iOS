@@ -22,7 +22,8 @@
     "react-native-qrcode": "^0.2.6",
     "react-native-qrcode-scanner": "^1.0.1",
     "react-native-vector-icons": "4.5.0",
-    "react-navigation": "1.5.0"
+    "react-navigation": "1.5.0",
+    "realm": "^2.10.0"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
