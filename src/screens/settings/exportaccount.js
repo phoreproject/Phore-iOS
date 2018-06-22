@@ -16,9 +16,13 @@ import {
   Text
 } from "native-base";
 import styles from "./styles";
+import QRCode from 'react-native-qrcode';
 
 class ExportAccount extends Component {
   render() {
+    const key = {
+      xpubkey: "3fef17433a29302fdcb6df273c8a8cba89a52e16c2de3b0e172e9bfcbabe55b0fefe3138e6161ea9e7d34e3904eb972beab7c6041521e1e48ae8e5ca03979801"
+    }
     return (
       <Container style={styles.container}>
         <Header>
@@ -36,29 +40,16 @@ class ExportAccount extends Component {
         </Header>
 
         <Content>
-          <Form>
-            <Text style={{alignSelf: 'center'}}>Amount</Text>
-            <Item floatingLabel>
-              <Label style={{alignSelf: 'center'}}>PHR</Label>
-              <Input />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>0 USD</Text>
-            <Button transparent block dark style={styles.mb15}>
-            <Text>ADD ALL</Text>
-          </Button>
-           <Text style={{alignSelf: 'center'}}>Address</Text>
-           <Item>
-              <Input placeholder="Write address or label name" />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>Description</Text>
-            <Item>
-              <Input placeholder="Add a description" />
-            </Item>
-           <Button bordered dark block style={{ margin: 15, marginTop: 50 }}>
-            <Text>Send</Text>
-          </Button>
-          </Form>
-          <Text style={{alignSelf: 'center'}}>Fee is not included in the total amount</Text>
+          <Text>Public key</Text>
+          <Text>{key.xpubkey}</Text>
+          <Text>Sharing your public key will allow anybody to view your balance and transaction history.</Text>
+          <Text>Derivation path (BIP32)</Text>
+          <Text>M/44H/444H/0H/0</Text>
+          <QRCode
+            value={key.xpubkey}
+            size={200}
+            bgColor='black'
+            fgColor='white' />
 
           
         </Content>
