@@ -38,29 +38,26 @@ class RestoreWallet extends Component {
         </Header>
 
         <Content>
+
+         <Text style={{alignSelf: 'center'}}>Select one of your backups</Text>
+         <Text style={{alignSelf: 'center'}}>files loaded from</Text>
+         <Text style={{alignSelf: 'center'}}>...</Text>
           <Form>
-            <Text style={{alignSelf: 'center'}}>Amount</Text>
-            <Item floatingLabel>
-              <Label style={{alignSelf: 'center'}}>PHR</Label>
-              <Input />
-            </Item>
-            <Text style={{alignSelf: 'center'}}>0 USD</Text>
-            <Button transparent block dark style={styles.mb15}>
-            <Text>ADD ALL</Text>
-          </Button>
-           <Text style={{alignSelf: 'center'}}>Address</Text>
+            
+            
            <Item>
-              <Input placeholder="Write address or label name" />
+              <Input placeholder="0.9.3_phore-wallet-backup_mainnet-2018-06-21" />
             </Item>
-            <Text style={{alignSelf: 'center'}}>Description</Text>
+            
             <Item>
-              <Input placeholder="Add a description" />
+              <Input placeholder="Password" />
             </Item>
-           <Button bordered dark block style={{ margin: 15, marginTop: 50 }}>
-            <Text>Send</Text>
+           <Button bordered dark block style={{ margin: 15, marginTop: 50 }}
+           onPress={() => this.props.navigation.navigate("RestoreMnemonic")}>
+            <Text>Restore Wallet</Text>
           </Button>
           </Form>
-          <Text style={{alignSelf: 'center'}}>Fee is not included in the total amount</Text>
+          
 
           
         </Content>
