@@ -21,13 +21,21 @@ import {
 } from 'react-native';
 import styles from "./styles";
 
+import { getAddressData } from "./address";
+
 import NewAddress from './newaddress';
 
 
 class AddressBook extends Component {
+
+  
   
     
   render() {
+    const data = [{
+    label: 'second',
+    address: 'PLbrGDauSXskGauvZt4XEkjfVHJo3pNYQY'
+    }]
     return (
       <Container style={styles.container}>
         <Header>
@@ -54,7 +62,8 @@ class AddressBook extends Component {
 
       
          <Content>
-
+            <Text>{data[0].label}</Text>
+            <Text>{data[0].address}</Text>
                 
                
 
