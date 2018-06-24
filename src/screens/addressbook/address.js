@@ -15,13 +15,31 @@ const preloadPhoreDb = () => {
 
 //return and array of addresses with labels
 
-const getAddressData = (queryObj) => {
+const getAddressData1 = (queryObj) => {
 	const db = preloadPhoreDb();
 	return new Promise((resolve, reject) => {		
 		db.transaction((tx) => {
 			tx.executeSql(queryObj.getSql(), [], (tx, results) => {
 				// tx.executeSql("SELECT label, address FROM addresses WHERE id=?", [this.state.id], (tx, results) => { 
 					console.log('Query returned for: ', queryObj.getSql());
+
+					const rows = results.rows.raw();
+
+					resolve(rows);
+
+
+			})
+		})
+})
+}
+
+const getAddressData = () => {
+	const db = preloadPhoreDb();
+	return new Promise((resolve, reject) => {		
+		db.transaction((tx) => {
+			tx.executeSql("SELECT * FROM addresses", [], (tx, results) => {
+				// tx.executeSql("SELECT label, address FROM addresses WHERE id=?", [this.state.id], (tx, results) => { 
+					console.log(results);
 
 					const rows = results.rows.raw();
 
