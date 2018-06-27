@@ -2,6 +2,7 @@ import React from "react";
 import { Root } from "native-base";
 import { StackNavigator, DrawerNavigator } from "react-navigation";
 
+
 import Header from "./screens/Header/";
 import Header1 from "./screens/Header/1";
 import Header2 from "./screens/Header/2";
@@ -117,6 +118,7 @@ import CurrencyRates from "./screens/settings/currencyrates";
 import NetworkMonitor from "./screens/settings/networkmonitor";
 import RestoreMnemonic from "./screens/settings/restoremnemonic";
 import RestoreWallet from "./screens/settings/restorewallet";
+
 
 
 
@@ -273,7 +275,6 @@ const AppNavigator = StackNavigator(
     Send: { screen: Send },
     MyWallet: { screen: MyWallet },
     AddressBook: { screen: AddressBook },
-    NewAddress: { screen: NewAddress },
     MultiSend: { screen: MultiSend },
     CustomFee: { screen: CustomFee },
     ChangeAddress: { screen: ChangeAddress },

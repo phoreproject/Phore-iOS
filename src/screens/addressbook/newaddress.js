@@ -25,10 +25,16 @@ import {
   ToastAndroid
 } from 'react-native';
 import styles from "./styles";
-import { putAddressData } from "./address";
+
+
+
+
+
 
 
 class NewAddress extends Component {
+
+ 
   
 
   render() {
@@ -52,7 +58,8 @@ class NewAddress extends Component {
           </Right>
         </Header>
 
-       {content}
+       <Content>
+       </Content>
       </Container>
     );
   }

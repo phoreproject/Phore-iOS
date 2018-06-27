@@ -1,3 +1,7 @@
+const React = require("react-native");
+
+const { StyleSheet } = React;
+
 export default {
   container: {
     backgroundColor: "#FFF"
@@ -8,5 +12,8 @@ export default {
   },
   mb: {
     marginBottom: 15
-  }
+  },
+  iconButton: {
+    color: "#FFF"
+  },
 };

@@ -21,7 +21,9 @@ export default {
     marginTop: 10
   },
   mb15: {
-    marginBottom: 20
+    marginBottom: 20,
+    backgroundColor: "#FFF",
+    marginRight: 20
   },
   mt15: {
     marginTop: 15
@@ -30,7 +32,7 @@ export default {
     marginBottom: 20
   },
   iconButton: {
-    color: "#007aff"
+    color: "#FFF"
   },
   margin: {
     flex: 1,

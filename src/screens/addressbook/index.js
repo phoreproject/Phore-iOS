@@ -17,16 +17,20 @@ import {
   View,
   ListView,
   RefreshControl,
-  TouchableHighlight
+  TouchableHighlight,
+  FlatList
 } from 'react-native';
 import styles from "./styles";
 
-import { getAddressData } from "./address";
 
-import NewAddress from './newaddress'; 
 
-var SQLite = require('react-native-sqlite-storage');
-var db = SQLite.openDatabase({name: 'phoreOne', location: 'default'});
+
+
+
+
+
+
+
 
 
 class AddressBook extends Component<{}> {
@@ -34,11 +38,19 @@ class AddressBook extends Component<{}> {
   constructor(props) {
     super(props)
     this.state = {
-      label: "",
-      address: "start"
+      /*label: "",
+      address: "start"*/
+      Addresses: []
     };
 
+    
+
+
+
+
   }
+
+  
 
    /* async componentWillMount() {
       const rows = await getAddressData();
@@ -46,12 +58,9 @@ class AddressBook extends Component<{}> {
     }*/
 
     componentWillMount() {
-      db.transaction((tx) => {
-        tx.executeSql('CREATE TABLE address(id INTEGER PRIMARY KEY AUTOINCREMENT, label TEXT, address TEXT', [], (tx, results) => {
-          
-          this.setState({address: 'success'});
-          })
-        })
+      
+
+
       
     }
 
@@ -88,7 +97,7 @@ class AddressBook extends Component<{}> {
             
             
             <Button transparent
-            onPress={() => this.props.navigation.navigate("NewAddress")}>
+            onPress={() => this.props.navigation.navigate()}>
               <Icon name="add" />
             </Button>
           </Right>
@@ -98,7 +107,13 @@ class AddressBook extends Component<{}> {
          <Content>
             <Text>{data[0].label}</Text>
             <Text>{data[0].address}</Text>
-            <Text>{'first address is: ' + this.state.address}</Text>
+            <Text>{'first address is: ' + data[0].address}</Text>
+
+          
+
+
+            
+
                 
                
 

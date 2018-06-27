@@ -12,7 +12,8 @@ class Home extends Component {
     return (
       <Container>
         <StatusBar barStyle="light-content" />
-        <ImageBackground source={launchscreenBg} style={styles.imageContainer}>
+       
+        <View style={{ backgroundColor: "#141c28", flex: 1}}>
           <View style={styles.logoContainer}>
             <ImageBackground source={launchscreenLogo} style={styles.logo} />
           </View>
@@ -30,13 +31,21 @@ class Home extends Component {
           </View>
           <View style={{ marginBottom: 80 }}>
             <Button
-              style={{ backgroundColor: "#6FAF98", alignSelf: "center" }}
+              style={{ backgroundColor: "#00d188", alignSelf: "center", marginBottom: 8 }}
               onPress={() => this.props.navigation.navigate("DrawerOpen")}
             >
-              <Text>Lets Go!</Text>
+              <Text>Create Wallet</Text>
             </Button>
+            <Button
+              style={{ backgroundColor: "#232c38", alignSelf: "center" }}
+              onPress={() => this.props.navigation.navigate("RestoreWallet")}
+            >
+              <Text>Import Wallet</Text>
+            </Button>
+
           </View>
-        </ImageBackground>
+       
+        </View>
       </Container>
     );
   }
