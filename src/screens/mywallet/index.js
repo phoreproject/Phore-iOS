@@ -17,7 +17,7 @@ import { StatusBar } from 'react-native';
 import styles from "./styles";
 import { Grid, Row } from "react-native-easy-grid";
 import constants from '../../components/constants';
-import phorerate from 'phorerate';
+
 
 
 class MyWallet extends Component {

@@ -47,27 +47,7 @@ const datas = [
     icon: "bookmarks",
     bg: "#C5F442"
   },
-  {
-    name: "Card",
-    route: "NHCard",
-    icon: "keypad",
-    bg: "#B89EF5",
-    types: "8"
-  },
-  {
-    name: "Form & Inputs",
-    route: "NHForm",
-    icon: "call",
-    bg: "#EFB406",
-    types: "12"
-  },
-  {
-    name: "Layout",
-    route: "NHLayout",
-    icon: "grid",
-    bg: "#9F897C",
-    types: "5"
-  }
+ 
 ];
 
 class SideBar extends Component {

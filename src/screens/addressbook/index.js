@@ -10,61 +10,55 @@ import {
   Right,
   Body,
   InputGroup,
-  Input
+  Input,
+  List,
+  ListItem
 } from "native-base";
 import {
   Text,
   View,
   ListView,
   RefreshControl,
-  TouchableHighlight,
-  FlatList
+  TouchableHighlight
 } from 'react-native';
 import styles from "./styles";
 
+import * as RealmDB from '../../realm/RealmSchemas';
+
+import { getAddressData } from "./address";
+
+import NewAddress from './newaddress'; 
+
+// var SQLite = require('react-native-sqlite-storage');
+// var db = SQLite.openDatabase({name: 'phoreOne', location: 'default'});
 
 
-
-
-
-
-
-
-
-
-
-class AddressBook extends Component<{}> {
+class AddressBook extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      /*label: "",
-      address: "start"*/
-      Addresses: []
+      label: "",
+      address: "start",
+      datas: []
     };
 
     
-
-
-
-
   }
 
-  
-
-   /* async componentWillMount() {
-      const rows = await getAddressData();
-      this.setState({address: 'success'})
-    }*/
+   
 
     componentWillMount() {
+
+    
       
-
-
       
     }
 
     componentDidMount() {
+      // alert(JSON.stringify(RealmDB.getAddresses()))
+      var addresslist = JSON.stringify(RealmDB.getAddresses());
+      alert(addresslist)
 
     }
 
@@ -75,7 +69,9 @@ class AddressBook extends Component<{}> {
   
     
   render() {
-    const data = [{
+    
+   
+    const data1 = [{
     label: 'second',
     address: 'PLbrGDauSXskGauvZt4XEkjfVHJo3pNYQY'
     }]
@@ -97,7 +93,7 @@ class AddressBook extends Component<{}> {
             
             
             <Button transparent
-            onPress={() => this.props.navigation.navigate()}>
+            onPress={() => this.props.navigation.navigate("NewAddress")}>
               <Icon name="add" />
             </Button>
           </Right>
@@ -105,15 +101,21 @@ class AddressBook extends Component<{}> {
 
       
          <Content>
-            <Text>{data[0].label}</Text>
-            <Text>{data[0].address}</Text>
-            <Text>{'first address is: ' + data[0].address}</Text>
-
-          
-
-
-            
-
+            <Text>{'yo'}</Text>
+            <Text>{data1[0].address}</Text>
+            <Text>{'first address is: ' + this.state.address}</Text>
+            <List
+            dataArray={this.state.datas}
+            renderRow={data =>
+              <ListItem>
+                <Left>
+                  <Text>
+                    {data.address}
+                  </Text>
+                </Left>
+                
+              </ListItem>}
+          />
                 
                
 
