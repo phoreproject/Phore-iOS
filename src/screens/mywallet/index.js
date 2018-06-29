@@ -11,7 +11,11 @@ import {
   Body,
   Text,
   Fab,
-  View
+  View,
+  Card,
+  CardItem,
+  List,
+  ListItem
 } from "native-base";
 import { StatusBar } from 'react-native';
 import styles from "./styles";
@@ -24,8 +28,9 @@ class MyWallet extends Component {
   render() {
     return (
       <Container style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
            <Button
               transparent
@@ -50,19 +55,39 @@ class MyWallet extends Component {
 
        
           <Grid>
-          <Row size={3} style={{ backgroundColor: "#00d188", justifyContent: 'center' }}>
+          <Row size={4} style={{ backgroundColor: "#00d188", justifyContent: 'center' }}>
          
-          <Text style={{alignSelf: 'center', fontSize: 30, color: 'white' }}>3.00 PHR</Text>
+          <Text style={{alignSelf: 'center', fontSize: 30, color: 'white', marginTop: 40, marginBottom: 40 }}>3.00 PHR</Text>
          
         
           </Row>
-          <Row size={1} style={{ backgroundColor: "#00d188", justifyContent: 'center'}}>
+          <Row size={2} style={{ backgroundColor: "#00d188", justifyContent: 'center'}}>
          
          
-          <Text style={{alignSelf: 'center', fontSize: 16, color: 'white', marginTop: 20 }}>4.99 CAD</Text>
+          <Text style={{alignSelf: 'center', fontSize: 16, color: 'white' }}>4.99 CAD</Text>
         
           </Row>
-          <Row size={8} style={{ backgroundColor: "#FFF" }} />
+           <Row size={1} style={{ backgroundColor: "#141c28", justifyContent: 'center'}}>
+         
+         
+          <Text style={{alignSelf: 'center', fontSize: 12, color: 'white' }}>Amount unspendable: 0 PHR</Text>
+        
+          </Row>
+
+          <Row size={12} style={{ backgroundColor: "#FFF" }} >
+          <Card>
+            <CardItem>
+              <Icon name="arrow-down" />
+              <Text>Receive</Text>
+              <Right>
+                <Text style={{alignSelf: 'flex-end'}}>3.00 PHR</Text>
+              </Right>
+            </CardItem>
+          </Card>
+          
+           
+
+          </Row>
         </Grid>
        
       </Container>

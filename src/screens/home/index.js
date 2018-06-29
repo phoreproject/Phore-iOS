@@ -24,9 +24,9 @@ class Home extends Component {
               backgroundColor: "transparent"
             }}
           >
-            <H3 style={styles.text}>Phore</H3>
+            <H3 style={styles.text}></H3>
             <View style={{ marginTop: 8 }} />
-            <H3 style={styles.text}>iOS</H3>
+            <H3 style={styles.text}></H3>
             <View style={{ marginTop: 8 }} />
           </View>
           <View style={{ marginBottom: 80 }}>

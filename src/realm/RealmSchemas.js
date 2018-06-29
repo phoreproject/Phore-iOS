@@ -35,6 +35,31 @@ export const getAddresses = () => {
 	return AddressItem.get();
 }
 
+class Currency {
+	static schema = {
+		name: 'Currency',
+		primaryKey: 'code',
+		properties: {
+			code: 'string',
+			name: 'string',
+			rate: 'number'
+		}
+	}
+	static get() {
+		return Array.from(realm.objects('PreferredCurrency'))
+	}
+}
+
+class TransactionItem {}
+
+class Seed {}
+
+class ReceivingAddress {}
+
+class Xpub {}
+
+class Xpriv {}
+
 // Initialize a Realm with models
 
 export const realm = new Realm({

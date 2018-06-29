@@ -15,6 +15,7 @@ import {
   Form,
   Text
 } from "native-base";
+import { StatusBar } from 'react-native';
 import styles from "./styles";
 
 class Send extends Component {
@@ -22,17 +23,18 @@ class Send extends Component {
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              <Icon name="arrow-back" style={{color: 'white'}}/>
             </Button>
           </Left>
           <Body>
-            <Title>Send</Title>
+            <Title style={{color: 'white'}}>Send</Title>
           </Body>
           <Right>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="more" />
+              <Icon name="more" style={{color: 'white'}}/>
             </Button>
           </Right>
         </Header>
