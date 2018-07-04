@@ -16,23 +16,25 @@ import {
   Text
 } from "native-base";
 import styles from "./styles";
+import { StatusBar } from 'react-native';
 
 class RestoreWallet extends Component {
   render() {
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              <Icon name="arrow-back" style={{ color: 'white'}}/>
             </Button>
           </Left>
           <Body>
-            <Title>Restore wallet</Title>
+            <Title style={{ color: 'white'}}>Restore wallet</Title>
           </Body>
           <Right>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="more" />
+              <Icon name="more" style={{ color: 'white'}}/>
             </Button>
           </Right>
         </Header>
@@ -41,7 +43,10 @@ class RestoreWallet extends Component {
 
          <Text style={{alignSelf: 'center'}}>Select one of your backups</Text>
          <Text style={{alignSelf: 'center'}}>files loaded from</Text>
-         <Text style={{alignSelf: 'center'}}>...</Text>
+         <Button bordered dark block style={{ margin: 15, marginTop: 50 }}
+           onPress={() => this.props.navigation.navigate()}>
+            <Text>iCloud</Text>
+          </Button>
           <Form>
             
             

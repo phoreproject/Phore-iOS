@@ -16,19 +16,21 @@ import {
   Text
 } from "native-base";
 import styles from "./styles";
+import { StatusBar } from 'react-native';
 
 class BackupWallet extends Component {
   render() {
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              <Icon name="arrow-back" style={{ color: 'white'}}/>
             </Button>
           </Left>
           <Body>
-            <Title>Backup wallet</Title>
+            <Title style={{ color: 'white'}}>Backup wallet</Title>
           </Body>
           <Right>
             
@@ -37,28 +39,22 @@ class BackupWallet extends Component {
 
         <Content>
           <Form>
-            <Text style={{alignSelf: 'center'}}>Amount</Text>
-            <Item floatingLabel>
-              <Label style={{alignSelf: 'center'}}>PHR</Label>
-              <Input />
+            <Text style={{alignSelf: 'center', marginTop: 40, marginLeft: 10, marginRight: 10}}>Your backup will be encrypted 
+            with the password you choose and saved to iCloud.</Text>
+            <Item regular style={{alignSelf: 'center', marginTop: 20, marginLeft: 10, marginRight: 10}}>
+              
+              <Input placeholder='Password' />
             </Item>
-            <Text style={{alignSelf: 'center'}}>0 USD</Text>
-            <Button transparent block dark style={styles.mb15}>
-            <Text>ADD ALL</Text>
-          </Button>
-           <Text style={{alignSelf: 'center'}}>Address</Text>
-           <Item>
-              <Input placeholder="Write address or label name" />
+            <Item regular style={{alignSelf: 'center', marginLeft: 10, marginRight: 10}}>
+              
+              <Input placeholder='Repeat Password' />
             </Item>
-            <Text style={{alignSelf: 'center'}}>Description</Text>
-            <Item>
-              <Input placeholder="Add a description" />
-            </Item>
+          
            <Button bordered dark block style={{ margin: 15, marginTop: 50 }}>
-            <Text>Send</Text>
+            <Text>Backup wallet</Text>
           </Button>
           </Form>
-          <Text style={{alignSelf: 'center'}}>Fee is not included in the total amount</Text>
+          
 
           
         </Content>

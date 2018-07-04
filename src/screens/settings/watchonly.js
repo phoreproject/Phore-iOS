@@ -18,6 +18,7 @@ import {
   ListItem
 } from "native-base";
 import styles from "./styles2";
+import { StatusBar } from 'react-native';
 
 class WatchOnly extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class WatchOnly extends Component {
     };
   }
   toggleSwitch1() {
-    this.setSate({
+    this.setState({
       checkbox1: !this.state.checkbox1
     })
   }
@@ -35,13 +36,14 @@ class WatchOnly extends Component {
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              <Icon name="arrow-back" style={{ color: 'white'}}/>
             </Button>
           </Left>
           <Body>
-            <Title>Watch Only</Title>
+            <Title style={{ color: 'white'}}>Watch Only</Title>
           </Body>
           <Right>
             
@@ -50,8 +52,8 @@ class WatchOnly extends Component {
 
         <Content>
           
-          <Text style={{alignSelf: 'center'}}>Make your wallet a Watch Only Wallet importing your xpub from another wallet.</Text>
-          <Text style={{alignSelf: 'center'}}>People using this device are going to see the full balance but not be able to spend the coins.</Text>
+          <Text style={{alignSelf: 'center', marginTop: 10, marginLeft: 10, marginRight: 10}}>Make your wallet a Watch Only Wallet importing your xpub from another wallet.</Text>
+          <Text style={{alignSelf: 'center', marginTop: 10, marginLeft: 10, marginRight: 10}}>People using this device are going to see the full balance but not be able to spend the coins.</Text>
 
           <Form>
           <Item>

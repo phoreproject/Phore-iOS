@@ -20,7 +20,7 @@ const datas = [
    {
     name: "Wallet",
     route: "MyWallet",
-    icon: "arrow-forward",
+    icon: "folder",
     bg: "#00d188"
   },
   {
@@ -33,19 +33,22 @@ const datas = [
     name: "Receive",
     route: "Receive",
     icon: "arrow-dropdown-circle",
-    bg: "#00d188"
+    bg: "#00d188",
+    icontype: Icon
   },
   {
     name: "Settings",
     route: "SettingsList",
     icon: "settings",
-    bg: "#C5F442"
+    bg: "#C5F442",
+    icontype: Icon
   },
   {
     name: "Address Book",
     route: "AddressBook",
     icon: "bookmarks",
-    bg: "#C5F442"
+    bg: "#C5F442",
+    icontype: Icon
   },
  
 ];

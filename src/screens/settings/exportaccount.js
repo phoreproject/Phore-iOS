@@ -13,26 +13,28 @@ import {
   Right,
   Icon,
   Form,
-  Text
+  Text,
+  View
 } from "native-base";
+import { StatusBar } from 'react-native';
 import styles from "./styles";
 import QRCode from 'react-native-qrcode';
+import constants from '../../components/constants';
 
 class ExportAccount extends Component {
   render() {
-    const key = {
-      xpubkey: "3fef17433a29302fdcb6df273c8a8cba89a52e16c2de3b0e172e9bfcbabe55b0fefe3138e6161ea9e7d34e3904eb972beab7c6041521e1e48ae8e5ca03979801"
-    }
+    const key = constants.xpub;
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              <Icon name="arrow-back" style={{ color: 'white' }}/>
             </Button>
           </Left>
           <Body>
-            <Title>Export Account</Title>
+            <Title style={{ color: 'white' }}>Export Account</Title>
           </Body>
           <Right>
             
@@ -40,16 +42,22 @@ class ExportAccount extends Component {
         </Header>
 
         <Content>
-          <Text>Public key</Text>
-          <Text>{key.xpubkey}</Text>
-          <Text>Sharing your public key will allow anybody to view your balance and transaction history.</Text>
-          <Text>Derivation path (BIP32)</Text>
-          <Text>M/44H/444H/0H/0</Text>
+          <Text style={{ marginTop: 10, alignSelf: 'center'}}>Public key</Text>
+          <Text style={{ marginTop: 10, alignSelf: 'center', marginLeft: 10, marginRight: 10}}>{key}</Text>
+          <Text style={{ marginTop: 10, alignSelf: 'center', marginLeft: 10, marginRight: 10}}>Sharing your public key will allow anybody to view your balance and transaction history.</Text>
+          <Text style={{ marginTop: 10, alignSelf: 'center'}}>Derivation path (BIP32)</Text>
+          <Text style={{ marginTop: 10, alignSelf: 'center'}}>M/44H/444H/0H/0</Text>
+          <View
+            style={{ flexDirection: "row", justifyContent: "center", marginTop: 25 }}
+          >
+
           <QRCode
-            value={key.xpubkey}
+            value={key}
             size={200}
             bgColor='black'
             fgColor='white' />
+         
+         </View>
 
           
         </Content>

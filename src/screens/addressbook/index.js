@@ -19,7 +19,8 @@ import {
   View,
   ListView,
   RefreshControl,
-  TouchableHighlight
+  TouchableHighlight,
+  StatusBar
 } from 'react-native';
 import styles from "./styles";
 
@@ -50,15 +51,16 @@ class AddressBook extends Component {
 
     componentWillMount() {
 
-    
+    var addresslist = RealmDB.getAddresses();
+    this.setState({ datas: addresslist })
       
       
     }
 
     componentDidMount() {
-      // alert(JSON.stringify(RealmDB.getAddresses()))
-      var addresslist = JSON.stringify(RealmDB.getAddresses());
-      alert(addresslist)
+      // // alert(JSON.stringify(RealmDB.getAddresses()))
+      // var addresslist = JSON.stringify(RealmDB.getAddresses());
+      // alert(addresslist)
 
     }
 
@@ -75,44 +77,49 @@ class AddressBook extends Component {
     label: 'second',
     address: 'PLbrGDauSXskGauvZt4XEkjfVHJo3pNYQY'
     }]
+    const datas = this.state.datas;
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
            <Button
               transparent
               onPress={() => this.props.navigation.navigate("DrawerOpen")}
             >
-              <Icon name="menu" />
+              <Icon name="menu" style={{color: 'white'}}/>
             </Button>
           </Left>
           <Body>
-            <Title>Address Book</Title>
+            <Title style={{color: 'white'}}>Address Book</Title>
           </Body>
           <Right>
             
             
             <Button transparent
             onPress={() => this.props.navigation.navigate("NewAddress")}>
-              <Icon name="add" />
+              <Icon name="add" style={{color: 'white'}}/>
             </Button>
           </Right>
         </Header>
 
       
          <Content>
-            <Text>{'yo'}</Text>
-            <Text>{data1[0].address}</Text>
-            <Text>{'first address is: ' + this.state.address}</Text>
+            
             <List
-            dataArray={this.state.datas}
+            dataArray={datas}
             renderRow={data =>
               <ListItem>
-                <Left>
+                <Body>
+                <Text>
+                  {data.label} 
+                </Text>
                   <Text>
                     {data.address}
                   </Text>
-                </Left>
+                  </Body>
+
+               
                 
               </ListItem>}
           />

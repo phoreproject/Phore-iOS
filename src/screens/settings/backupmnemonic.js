@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, AppRegistry, ListView } from "react-native";
+import { View, AppRegistry, ListView, StatusBar } from "react-native";
 import {
   Container,
   Header,
@@ -20,12 +20,64 @@ import {
   Badge
 } from "native-base";
 import styles from "./styles1";
+import * as bip39 from '../../components/bip39';
+import * as phore from '../../wallet';
+import * as RealmDB from '../../realm/RealmSchemas';
+
+
 
 
 class BackupMnemonic extends Component {
+  state = { words: '',
+            wordss: [],
+            password: 'phrTemp',
+            seed: '',
+            hdmaster: '',
+            keypair: '',
+            WIF: '',
+            pubkey: '',
+            address: '' };
+  
+  componentWillMount() {
+    bip39.generateMnemonic().then(response => {
+      this.setState({ words: response, wordss: response.trim().split(" ") })
+      var seed = bip39.generateSeed(response, this.state.password);
+      this.setState({ seed: seed })
+      var hdmaster = phore.generateHDMaster(seed);
+      this.setState({ hdmaster: hdmaster})
+      var keypair = phore.generateKeyPairFromMaster(hdmaster, 1);
+      this.setState({ keypair: keypair})
+      var WIF = phore.getWIFfromKeyPair(keypair);
+      this.setState({ WIF: WIF})
+      var pubkey = phore.getPubKeyFromKeyPair(keypair);
+      this.setState({ pubkey: pubkey })
+      var address = phore.getAddressFromKeyPair(keypair);
+      this.setState({ address: address })
+      
+    } );
+
+    
+    }
+
+   
+
+   
+
+
+  
+
+
   render() {
-    const datas = ["artefact", "intact", "reward", "frog", "bid", "save", "hover", "fork", "gather", "liquid", "earth", "thunderfurnace", "fragile", "motion", "ten", "staff", "cave", "quality", "secret", "best", "exotic", "lake", "six"]
-    return (
+    
+   
+    const address = this.state.address;
+    const seed = this.state.seed;
+    const hdmaster = this.state.hdmaster;
+    const keypair = this.state.keypair;
+    const WIF = this.state.WIF;
+    const pubkey = this.state.pubkey;
+    const datas = this.state.wordss;
+     return (
       <Container style={styles.container}>
         <Header iosBarStyle="light-content">
           <Left>
@@ -64,9 +116,22 @@ class BackupMnemonic extends Component {
          />
 
           </View>
+          
 
           <Button bordered dark block style={{ margin: 15, marginTop: 20 }}
-          onPress={() => this.props.navigation.navigate("MyWallet")}>
+          onPress={() => {
+            
+            RealmDB.createReceivingAddress(address)
+           
+            
+            
+           
+
+            this.props.navigation.navigate("MyWallet")
+
+          }
+
+          }>
             <Text>Confirm</Text>
           </Button>
             

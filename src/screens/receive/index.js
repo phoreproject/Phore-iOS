@@ -17,18 +17,38 @@ import {
   Text,
   Card
 } from "native-base";
+import { StatusBar } from 'react-native';
 import styles from "./styles";
 import QRCode from 'react-native-qrcode';
 import constants from '../../components/constants';
+import * as RealmDB from '../../realm/RealmSchemas';
 
 class Receive extends Component {
+
+  state = {
+    pkeystring: ''
+  }
+
+  componentWillMount() {
+    const recaddress = RealmDB.getReceivingAddress(0)
+    console.log(recaddress)
+    this.setState({ pkeystring: recaddress })
+    
+
+  }
+
+  _setContent() {
+    Clipboard.setString(pkeystring)
+  }
   render() {
+
     const data = {
-      pkeystring: constants.recaddress,
+      pkeystring: this.state.pkeystring,
     };
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
               <Icon name="arrow-back" style={{ color: 'white'}}/>
@@ -66,10 +86,12 @@ class Receive extends Component {
           <View
             style={{ flexDirection: "row", justifyContent: "center", marginTop: 25 }}
           >
-            <Button bordered success style={styles.mb15}>
+            <Button bordered success style={styles.mb15}
+            onPress={() => alert('this will be the pkeystring state added to clipboard')}>
             <Text>Save</Text>
           </Button>
-            <Button bordered success style={styles.mb15}>
+            <Button bordered success style={styles.mb15}
+            onPress={() => alert('this will be where it copies to clipboard and passes to another app using react native app link, which app could be set in preferences')}>
             <Text>Share</Text>
           </Button>
           </View>

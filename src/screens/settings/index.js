@@ -13,22 +13,24 @@ import {
   Body
 } from "native-base";
 import styles from "./styles";
+import { StatusBar } from 'react-native';
 
 class SettingsList extends Component {
   render() {
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
             <Button
               transparent
               onPress={() => this.props.navigation.navigate("DrawerOpen")}
             >
-              <Icon name="menu" />
+              <Icon name="menu" style={{ color: 'white' }}/>
             </Button>
           </Left>
           <Body>
-            <Title>Settings</Title>
+            <Title style={{ color: 'white' }}>Settings</Title>
           </Body>
           <Right />
         </Header>

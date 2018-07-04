@@ -1,6 +1,9 @@
 import React from "react";
 import { Root } from "native-base";
 import { StackNavigator, DrawerNavigator } from "react-navigation";
+import "../shim";
+const bitcoin = require('bitcoinjs-lib');
+const phore = bitcoin.networks.phore;
 
 
 

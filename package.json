@@ -4,13 +4,20 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
+    "postinstall": "./node_modules/.bin/rn-nodeify --install buffer,stream,assert,events,crypto,vm --hack && npm i -S buffer@5",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "dependencies": {
+    "assert": "^1.4.1",
+    "bitcoinjs-lib": "git+https://github.com/coreyphillips/react-native-bitcoinjs-lib.git",
     "bitcoinjs-phore": "^1.1.0",
+    "buffer": "^5.1.0",
+    "buffer-reverse": "^1.0.1",
     "color": "1.0.3",
+    "crypto": "^1.0.1",
+    "events": "^1.1.1",
     "lodash": "4.13.1",
     "moment": "2.13.0",
     "native-base": "2.5.2",
@@ -18,16 +25,21 @@
     "phorerate": "^1.0.1",
     "react": "16.3.1",
     "react-native": "0.55.4",
+    "react-native-bip39": "^2.3.0",
     "react-native-camera": "^1.1.4",
     "react-native-easy-gridview": "^1.0.2",
     "react-native-qrcode": "^0.2.6",
     "react-native-qrcode-scanner": "^1.0.1",
+    "react-native-randombytes": "^3.3.0",
     "react-native-sqlite-storage": "^3.3.6",
     "react-native-vector-icons": "4.5.0",
     "react-navigation": "1.5.0",
+    "readable-stream": "^1.0.33",
     "realm": "^2.10.0",
     "request": "^2.87.0",
     "rnpm": "^1.9.0",
+    "stream-browserify": "^1.0.0",
+    "vm-browserify": "0.0.4",
     "xcode": "^1.0.0"
   },
   "devDependencies": {
@@ -45,9 +57,30 @@
     "jest": "20.0.4",
     "jest-expo": "25.0.0",
     "prettier": "1.5.3",
-    "react-test-renderer": "16.3.1"
+    "react-test-renderer": "16.3.1",
+    "rn-nodeify": "^10.0.0"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "react-native": {
+    "crypto": "react-native-crypto",
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "stream": "stream-browserify",
+    "vm": "vm-browserify"
+  },
+  "browser": {
+    "crypto": "react-native-crypto",
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "stream": "stream-browserify",
+    "vm": "vm-browserify"
   }
 }

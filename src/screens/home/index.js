@@ -30,9 +30,15 @@ class Home extends Component {
             <View style={{ marginTop: 8 }} />
           </View>
           <View style={{ marginBottom: 80 }}>
+           <Button
+              style={{ backgroundColor: "#232c38", alignSelf: "center", marginBottom: 8 }}
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}
+            >
+              <Text>Login to App</Text>
+            </Button>
             <Button
               style={{ backgroundColor: "#00d188", alignSelf: "center", marginBottom: 8 }}
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
+              onPress={() => this.props.navigation.navigate("BackupMnemonic")}
             >
               <Text>Create Wallet</Text>
             </Button>

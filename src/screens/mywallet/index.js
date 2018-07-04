@@ -47,8 +47,8 @@ class MyWallet extends Component {
             <Button transparent>
               <Icon name="qr-scanner" style={{ color: 'white'}}/>
             </Button>
-            <Button transparent>
-              <Icon name="more" style={{ color: 'white'}} />
+             <Button transparent onPress={() => this.props.navigation.navigate("Receive")}>
+              <Icon name="arrow-down" style={{ color: 'white'}} />
             </Button>
           </Right>
         </Header>
@@ -81,6 +81,7 @@ class MyWallet extends Component {
               <Text>Receive</Text>
               <Right>
                 <Text style={{alignSelf: 'flex-end'}}>3.00 PHR</Text>
+                <Text style={{alignSelf: 'flex-end', fontSize: 12}}>2018-06-26 03:28</Text>
               </Right>
             </CardItem>
           </Card>

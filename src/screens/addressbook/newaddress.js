@@ -22,7 +22,8 @@ import {
 import {
   TouchableHighlight,
   Text,
-  ToastAndroid
+  ToastAndroid,
+  StatusBar
 } from 'react-native';
 import styles from "./styles";
 import * as RealmDB from '../../realm/RealmSchemas';
@@ -48,18 +49,17 @@ class NewAddress extends Component {
     return (
       <Container style={styles.container}>
         <Header>
+        <StatusBar barStyle="light-content" />
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              <Icon name="arrow-back" style={{color: 'white'}}/>
             </Button>
           </Left>
           <Body>
-            <Title>New Address Label</Title>
+            <Title style={{color: 'white'}}>New Address Label</Title>
           </Body>
           <Right>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Text>SAVE</Text>
-            </Button>
+            
           </Right>
         </Header>
 
@@ -93,6 +93,7 @@ class NewAddress extends Component {
                                 label: this.state.label
                               }
                               RealmDB.createAddressItem(newAddressItem);
+                              alert('new address added')
                             }
 
                             }}>
