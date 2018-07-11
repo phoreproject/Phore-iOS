@@ -119,6 +119,34 @@ export const getWalletSeed = (index) => {
 	return seed;
 	}
 
+class TheWalletSeed { 
+	static schema = {
+		name: 'TheWalletSeed',
+		primaryKey: 'seed',
+		properties: {
+			
+			seed: 'string'
+			
+		}
+	}
+	static get() {
+		return Array.from(realm.objects('TheWalletSeed'))
+	}
+}
+
+export const createTheWalletSeed= (seed) => {
+
+	realm.write(() => {
+		realm.create('TheWalletSeed', {seed: seed})
+	})
+	}
+
+export const getTheWalletSeed = (index) => {
+
+	const seed = Array.from(realm.objects(TheWalletSeed))[index]['seed'];
+	return seed;
+	}
+
 class ReceivingAddress { 
 	static schema = {
 		name: 'ReceivingAddress',
@@ -145,6 +173,18 @@ export const getReceivingAddress = (index) => {
 
 	const address = Array.from(realm.objects(ReceivingAddress))[index]['address'];
 	return address;
+	}
+
+export const checkReceivingAddress = () => {
+
+	const address = Array.from(realm.objects(ReceivingAddress));
+	if (address.length > 0) {
+		message = true
+	}
+	else {
+		message = false
+	}
+	return message;
 	}
 
 class HDMaster { 
@@ -174,6 +214,8 @@ export const getHDMaster = (index) => {
 	const key = Array.from(realm.objects(HDMaster))[index]['key'];
 	return key;
 	}
+
+
 
 class KeyPair { 
 	static schema = {
@@ -260,9 +302,100 @@ export const getPublicKey = (index) => {
 	}
 
 
+class WalletItem {
+	static schema = {
+		name: 'WalletItem',
+		primaryKey: 'id',
+		properties: {
+			id: 'string',
+			seed: 'data',
+			
+
+		}
+	}
+
+	static get() {
+		return Array.from(realm.objects('AddressItem'))
+	}
+}
+
+export const createWalletItemShortened = (id, seed) => {
+
+	realm.write(() => {
+		realm.create('WalletItem', {id: id, seed: seed})
+	})
+	}
+
+export const getWalletRecAddress = (index) => {
+
+	const address = Array.from(realm.objects(PublicKey))[index]['recaddress'];
+	return address;
+	}
+
+
+class WalletIteration {
+	static schema = {
+		name: 'WalletIteration',
+		primaryKey: 'id',
+		properties: {
+			id: 'string',
+			seed: 'data',
+			HDMaster: 'data',
+			keypair: 'data',
+			WIF: 'string',
+			pubkey: 'string',
+			recaddress: 'string'
+			
+
+		}
+	}
+
+	static get() {
+		return Array.from(realm.objects('WalletIteration'))
+	}
+}
+
+export const createWalletIteration = (id, seed, hdmaster, keypair, wif, pubkey, recaddress) => {
+
+	realm.write(() => {
+		realm.create('WalletIteration', {id: id, seed: seed, HDMaster: hdmaster, keypair: keypair, WIF: wif, pubkey: pubkey, recaddress: recaddress})
+	})
+	}
+
+export const getWalletIterationRecAddress = (index) => {
+
+	const address = Array.from(realm.objects(PublicKey))[index]['recaddress'];
+	return address;
+	}
+
+
 class Xpub {}
 
 class Xpriv {}
+
+class WalletMaster {
+	static schema = {
+		name: 'WalletMaster',
+		primaryKey: 'id',
+		properties: {
+			id: 'string',
+			hdmaster: 'data',
+			
+
+		}
+	}
+
+	static get() {
+		return Array.from(realm.objects('WalletMaster'))
+	}
+}
+
+export const createWalletMaster = (id, hdmaster) => {
+
+	realm.write(() => {
+		realm.create('WalletMaster', {id: id, hdmaster: hdmaster})
+	})
+	}
 
 // Initialize a Realm with models
 
@@ -275,8 +408,13 @@ export const realm = new Realm({
 		KeyPair,
 		WIF,
 		PublicKey,
-		WalletSeed
+		WalletSeed,
+		WalletItem,
+		TheWalletSeed,
+		WalletIteration,
+		WalletMaster
+		
 		],
-	schemaVersion: 7
+	schemaVersion: 12
 	}
 );

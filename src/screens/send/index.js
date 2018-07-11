@@ -15,13 +15,51 @@ import {
   Form,
   Text
 } from "native-base";
-import { StatusBar, View } from 'react-native';
+import { StatusBar, View, Modal } from 'react-native';
 import styles from "./styles";
+import * as phore from '../../wallet';
+import * as phorerpc from '../../components/phorerpc';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import * as phorerate from '../../components/phorerate';
 
 class Send extends Component {
+  state = {
+    phrbalance: '3',
+    preferredfiat: 'USD',
+    phoretofiatrate: '1.33',
+    sendingcurrency: 'PHR',
+    sendingaddress: 'Write address or label name',
+    sendingdescription: '',
+    sendingamount: '',
+    inputtxid: 'ced189f026de1932db96d69af3fc8a7cb04a5f3b41dde312fb609d014580856c',
+    inputoutn: 1,
+    signingWIF: 'Kxthj3A9VDrqYPpUWQ93sdaAAXDhZSmEEvSvddJxgzEKtcVS4RyM',
+    keypairSpend: '',
+    modalVisible: false
+
+  }
+
+  componentWillMount() {
+    phorerate.getPhoreRate('USD').then(response => this.setState({phoretofiatrate: response}))
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible})
+  }
+
+  
   render() {
+    const balance = this.state.phrbalance;
+    const fiatamount = (this.state.sendingamount * this.state.phoretofiatrate).toFixed(2);
+    const sendingamount = this.state.sendingamount * 100000000;
+    const sendingamountbase = this.state.sendingamount;
+    const sendingaddress = this.state.sendingaddress;
+    const WIF = this.state.signingWIF;
+    const outn = this.state.inputoutn;
+    const inputtxid = this.state.inputtxid;
+    console.log(WIF)
     return (
-      <Container style={styles.container}>
+      <Container style={styles.container}> 
         <Header>
         <StatusBar barStyle="light-content" />
           <Left>
@@ -40,34 +78,48 @@ class Send extends Component {
         </Header>
 
         <Content>
-          <Form>
+                 <Form>
             <Text style={{alignSelf: 'center', marginTop: 10}}>Amount</Text>
             
             <Item floatingLabel>
               <Label style={{alignSelf: 'center'}}>PHR</Label>
-              <Input />
+              <Input placeholder={sendingamountbase} onChangeText={(text) => {this.setState({sendingamount: text})}}/>
             </Item>
             
-            <Text style={{alignSelf: 'center'}}>0 USD</Text>
+            <Text style={{alignSelf: 'center'}}>{fiatamount} {this.state.preferredfiat}</Text>
             <Button transparent style={{alignSelf: 'flex-end', marginTop: -10}} onPress={() => this.props.navigation.goBack()}>
               <Icon name="swap" style={{color: 'black'}}/>
             </Button>
             
-            <Button transparent block dark style={styles.mb15}>
+            <Button transparent block dark style={styles.mb15} onPress={() => this.setState({sendingamount: balance})}>
             <Text style={{fontWeight: 'bold'}}>ADD ALL</Text>
           </Button>
-          <Button transparent style={{alignSelf: 'flex-end', marginBottom: -70}} onPress={() => this.props.navigation.goBack()}>
+          <Button transparent style={{alignSelf: 'flex-end', marginBottom: -70}} onPress={() => this.setModalVisible(true)}>
               <Icon name="qr-scanner" style={{color: 'black'}}/>
             </Button>
            <Text style={{alignSelf: 'center', marginTop: 30}}>Address</Text>
            <Item>
-              <Input placeholder="Write address or label name" />
+              <Input placeholder={sendingaddress} onChangeText={(text) => {this.setState({sendingaddress: text})}}/>
             </Item>
             <Text style={{alignSelf: 'center', marginTop: 10}}>Description</Text>
             <Item>
-              <Input placeholder="Add a description" />
+              <Input placeholder="Add a description" onChangeText={(text) => {this.setState({sendingdescription: text})}}/>
             </Item>
-           <Button bordered dark block style={{ margin: 15, marginTop: 50 }}>
+           <Button bordered dark block style={{ margin: 15, marginTop: 50 }} onPress={() => {
+             const sendingamount = this.state.sendingamount * 100000000;
+    const sendingamountbase = this.state.sendingamount;
+    const sendingaddress = this.state.sendingaddress;
+    const WIF = this.state.signingWIF;
+    const outn = this.state.inputoutn;
+    const inputtxid = this.state.inputtxid;
+
+            console.log(sendingamount + ' ' + sendingaddress + ' ' + ' ' + inputtxid + ' ' + outn + ' ' + WIF)
+            let txHex = phore.generateTransaction(sendingaddress, sendingamount, inputtxid, outn, WIF)
+            console.log(txHex)
+           
+              
+            alert('Your transaction hex is: ' + txHex)
+             }}>
             <Text>Send</Text>
           </Button>
           </Form>

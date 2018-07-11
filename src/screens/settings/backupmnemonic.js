@@ -42,6 +42,7 @@ class BackupMnemonic extends Component {
     bip39.generateMnemonic().then(response => {
       this.setState({ words: response, wordss: response.trim().split(" ") })
       var seed = bip39.generateSeed(response, this.state.password);
+      var id = 0;
       this.setState({ seed: seed })
       var hdmaster = phore.generateHDMaster(seed);
       this.setState({ hdmaster: hdmaster})
@@ -54,10 +55,20 @@ class BackupMnemonic extends Component {
       var address = phore.getAddressFromKeyPair(keypair);
       this.setState({ address: address })
       
-    } );
+      RealmDB.createReceivingAddress(address)
+      
+    } )};
+
+    componentDidMount() {
+
+      var WIF = this.state.WIF
+
+      RealmDB.createWIF(WIF)
+      
+    };
 
     
-    }
+    
 
    
 
@@ -69,14 +80,15 @@ class BackupMnemonic extends Component {
 
   render() {
     
-   
-    const address = this.state.address;
+    const id = '2';
+    const recaddress = this.state.address;
     const seed = this.state.seed;
     const hdmaster = this.state.hdmaster;
     const keypair = this.state.keypair;
-    const WIF = this.state.WIF;
+    const wif = this.state.WIF;
     const pubkey = this.state.pubkey;
     const datas = this.state.wordss;
+   
      return (
       <Container style={styles.container}>
         <Header iosBarStyle="light-content">
@@ -121,12 +133,12 @@ class BackupMnemonic extends Component {
           <Button bordered dark block style={{ margin: 15, marginTop: 20 }}
           onPress={() => {
             
-            RealmDB.createReceivingAddress(address)
+           
            
             
             
-           
-
+           console.log(seed)
+            RealmDB.createWalletItemShortened('1', seed)
             this.props.navigation.navigate("MyWallet")
 
           }

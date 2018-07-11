@@ -21,11 +21,25 @@ import { StatusBar } from 'react-native';
 import styles from "./styles";
 import { Grid, Row } from "react-native-easy-grid";
 import constants from '../../components/constants';
+import * as phorerate from '../../components/phorerate';
 
 
 
 class MyWallet extends Component {
+  state = {
+    phore2fiatrate: '1.29',
+    phorebalance: 0
+  }
+  componentWillMount() {
+    phorerate.getPhoreRate('CAD').then(response => this.setState({phore2fiatrate: response}))
+    phorerate.getPhoreBalance('PCsoSCx3nF6FAxk8duewpgRT48pPzB5YC9').then(response => this.setState({phorebalance: response}))
+    
+  }
   render() {
+    console.log(this.state.phore2fiatrate)
+    const phoreb = this.state.phorebalance
+    const phorefiatrate = this.state.phore2fiatrate
+    const fiatbalance = (phoreb * phorefiatrate).toFixed(2)
     return (
       <Container style={styles.container}>
       
@@ -57,14 +71,14 @@ class MyWallet extends Component {
           <Grid>
           <Row size={4} style={{ backgroundColor: "#00d188", justifyContent: 'center' }}>
          
-          <Text style={{alignSelf: 'center', fontSize: 30, color: 'white', marginTop: 40, marginBottom: 40 }}>3.00 PHR</Text>
+          <Text style={{alignSelf: 'center', fontSize: 30, color: 'white', marginTop: 40, marginBottom: 40 }}>{phoreb} PHR</Text>
          
         
           </Row>
           <Row size={2} style={{ backgroundColor: "#00d188", justifyContent: 'center'}}>
          
          
-          <Text style={{alignSelf: 'center', fontSize: 16, color: 'white' }}>4.99 CAD</Text>
+          <Text style={{alignSelf: 'center', fontSize: 16, color: 'white' }}>{fiatbalance} CAD</Text>
         
           </Row>
            <Row size={1} style={{ backgroundColor: "#141c28", justifyContent: 'center'}}>

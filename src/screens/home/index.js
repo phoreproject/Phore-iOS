@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { ImageBackground, View, StatusBar } from "react-native";
 import { Container, Button, H3, Text } from "native-base";
+import * as phore from '../../wallet';
+import * as RealmDB from '../../realm/RealmSchemas';
 
 import styles from "./styles";
 

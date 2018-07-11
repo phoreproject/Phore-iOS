@@ -39,9 +39,24 @@ const getAddressFromKeyPair = function(keyPairIteration) {
 	return address
 }
 
+const generateTransaction = function(sendingaddress, sendingamount, txId, outn, WIF) {
+	
+	txb.addInput(txId, outn)
+	txb.addOutput(sendingaddress, sendingamount)
+	let keypairSpend = bitcoin.ECPair.fromWIF(WIF, phore)
+	txb.sign(0, keypairSpend)
+	let tx = txb.build()
+	let txHex = tx.toHex()
+	return txHex
+
+
+
+}
+
 module.exports.generateHDMaster = generateHDMaster;
 module.exports.generateKeyPairFromMaster = generateKeyPairFromMaster;
 module.exports.getWIFfromKeyPair = getWIFfromKeyPair;
 module.exports.getPubKeyFromKeyPair = getPubKeyFromKeyPair;
 module.exports.getAddressFromKeyPair = getAddressFromKeyPair;
+module.exports.generateTransaction = generateTransaction;
 
