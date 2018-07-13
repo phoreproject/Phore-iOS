@@ -56,7 +56,8 @@ class CurrencyRates extends Component {
             dataArray={datas}
             renderRow={data =>
               <ListItem onPress={() => this.setState({ preferredcurrency: data.code }, 
-                () => { 
+                () => { const prefcur = this.state.preferredcurrency
+                        RealmDB.createPreferredCurrency(prefcur)
                         alert('Preferred currency updated to: ' + this.state.preferredcurrency)}) }>
                 <Left>
                 

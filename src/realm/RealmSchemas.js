@@ -43,6 +43,7 @@ class Currency {
 			
 			code: 'string', //eg USD
 			name: 'string'
+			
 			// rate: 'string'
 		}
 	}
@@ -56,7 +57,8 @@ export const createPreferredCurrency = (currency) => {
 	realm.write(() => {
 		
 		realm.create('Currency', {
-			code: currency
+			code: currency,
+			name: 'preferred'
 		});
 	});
 }
@@ -75,7 +77,7 @@ export const updatePreferredCurrency = (currency) => {
 }
 
 export const getPreferredCurrency = () => {
-	const item = realm.objects(Currency)[0];
+	const item = realm.objects(Currency)[0]['code'];
 	return item;
 }
 

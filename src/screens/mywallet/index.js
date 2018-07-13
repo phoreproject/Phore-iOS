@@ -22,21 +22,28 @@ import styles from "./styles";
 import { Grid, Row } from "react-native-easy-grid";
 import constants from '../../components/constants';
 import * as phorerate from '../../components/phorerate';
+import * as RealmDB from '../../realm/RealmSchemas';
+
 
 
 
 class MyWallet extends Component {
   state = {
     phore2fiatrate: '1.29',
-    phorebalance: 0
+    phorebalance: 0,
+    preferredcurrency: 'USD'
   }
   componentWillMount() {
-    phorerate.getPhoreRate('CAD').then(response => this.setState({phore2fiatrate: response}))
+    var prefcur = RealmDB.getPreferredCurrency();
+    console.log(prefcur)
+    this.setState({preferredcurrency: prefcur})
+    phorerate.getPhoreRate(prefcur).then(response => this.setState({phore2fiatrate: response}))
     phorerate.getPhoreBalance('PCsoSCx3nF6FAxk8duewpgRT48pPzB5YC9').then(response => this.setState({phorebalance: response}))
     
   }
   render() {
     console.log(this.state.phore2fiatrate)
+    const prefcurr = this.state.preferredcurrency
     const phoreb = this.state.phorebalance
     const phorefiatrate = this.state.phore2fiatrate
     const fiatbalance = (phoreb * phorefiatrate).toFixed(2)
@@ -78,7 +85,7 @@ class MyWallet extends Component {
           <Row size={2} style={{ backgroundColor: "#00d188", justifyContent: 'center'}}>
          
          
-          <Text style={{alignSelf: 'center', fontSize: 16, color: 'white' }}>{fiatbalance} CAD</Text>
+          <Text style={{alignSelf: 'center', fontSize: 16, color: 'white' }}>{fiatbalance} {prefcurr}</Text>
         
           </Row>
            <Row size={1} style={{ backgroundColor: "#141c28", justifyContent: 'center'}}>
