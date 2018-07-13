@@ -21,6 +21,7 @@ import * as phore from '../../wallet';
 import * as phorerpc from '../../components/phorerpc';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import * as phorerate from '../../components/phorerate';
+import * as RealmDB from '../../realm/RealmSchemas';
 
 class Send extends Component {
   state = {
@@ -40,7 +41,9 @@ class Send extends Component {
   }
 
   componentWillMount() {
-    phorerate.getPhoreRate('USD').then(response => this.setState({phoretofiatrate: response}))
+    const prefcur = RealmDB.getPreferredCurrency()
+    this.setState({preferredfiat: prefcur})
+    phorerate.getPhoreRate(prefcur).then(response => this.setState({phoretofiatrate: response}))
   }
 
   setModalVisible(visible) {
