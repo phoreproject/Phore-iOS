@@ -31,17 +31,28 @@ class MyWallet extends Component {
   state = {
     phore2fiatrate: '1.29',
     phorebalance: 0,
-    preferredcurrency: 'USD'
+    preferredcurrency: 'USD',
+    transactions: {}
   }
   componentWillMount() {
     var prefcur = RealmDB.getPreferredCurrency();
+    var address = RealmDB.getReceivingAddress(0);
+    phorerate.getTransactions(address).then(response => this.setState({transactions: response}));
+    console.log(address)
     console.log(prefcur)
     this.setState({preferredcurrency: prefcur})
     phorerate.getPhoreRate(prefcur).then(response => this.setState({phore2fiatrate: response}))
-    phorerate.getPhoreBalance('PCsoSCx3nF6FAxk8duewpgRT48pPzB5YC9').then(response => this.setState({phorebalance: response}))
+    phorerate.getPhoreBalance(address).then(response => this.setState({phorebalance: response}))
     
   }
   render() {
+    
+    const txs = this.state.transactions
+    
+    if (txs.length > 0) {
+      console.log(txs.txs[0])
+    }
+   
     console.log(this.state.phore2fiatrate)
     const prefcurr = this.state.preferredcurrency
     const phoreb = this.state.phorebalance
