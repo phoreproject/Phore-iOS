@@ -271,7 +271,7 @@ export const createWIF = (wifkey) => {
 
 export const getWIF = (index) => {
 
-	const wifkey = Array.from(realm.objects(WIF))[index]['wifkey'];
+	const wifkey = Array.from(realm.objects(WIF))[index];
 	return wifkey;
 	}
 
@@ -328,10 +328,10 @@ export const createWalletItemShortened = (id, seed) => {
 	})
 	}
 
-export const getWalletRecAddress = (index) => {
+export const getWalletItemShortened = () => {
 
-	const address = Array.from(realm.objects(PublicKey))[index]['recaddress'];
-	return address;
+	const seed = Array.from(realm.objects(WalletItem));
+	return seed;
 	}
 
 

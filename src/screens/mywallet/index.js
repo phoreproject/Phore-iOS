@@ -32,26 +32,64 @@ class MyWallet extends Component {
     phore2fiatrate: '1.29',
     phorebalance: 0,
     preferredcurrency: 'USD',
-    transactions: {}
+    transactions: [],
+    address: ''
   }
   componentWillMount() {
     var prefcur = RealmDB.getPreferredCurrency();
     var address = RealmDB.getReceivingAddress(0);
-    phorerate.getTransactions(address).then(response => this.setState({transactions: response}));
-    console.log(address)
+    this.setState({address: address})
     console.log(prefcur)
     this.setState({preferredcurrency: prefcur})
     phorerate.getPhoreRate(prefcur).then(response => this.setState({phore2fiatrate: response}))
     phorerate.getPhoreBalance(address).then(response => this.setState({phorebalance: response}))
     
   }
+
+  componentDidMount () {
+    var address = this.state.address
+    phorerate.getTransactions(address).then(response => {
+      let txs = response.txs
+      this.setState({transactions: txs})
+      let firsttx = txs[0]
+      
+      let time = firsttx.time_utc
+      let amt = firsttx.change / 100000000
+      let type
+      if (amt > 0) {
+        type = 'Receive'
+      }
+      else if (amt < 0) {
+        type = 'Send'
+      }
+
+
+      console.log(type)
+    });
+  }
+
+  
   render() {
     
-    const txs = this.state.transactions
-    
-    if (txs.length > 0) {
-      console.log(txs.txs[0])
+    let datas = this.state.transactions
+    let txss = this.state.transactions
+    if (txss.length < 1) {
+      console.log('empty array')
+      let datas = [{change: 'loading', amt: 'loading'}]
     }
+    else {
+      let datas = txss
+      let i;
+      for (i = 0; i < txss.length; i++) {
+        let txamt = txss[i].change / 100000000
+        let txtime = txss[i].time_utc
+        console.log('amt: ' + txamt + ' time: ' + txtime)
+      }
+
+    }
+
+    
+    
    
     console.log(this.state.phore2fiatrate)
     const prefcurr = this.state.preferredcurrency
@@ -107,17 +145,26 @@ class MyWallet extends Component {
           </Row>
 
           <Row size={12} style={{ backgroundColor: "#FFF" }} >
+          <List dataArray={datas}
+            renderRow={(data) => 
+              <ListItem>
+              <Content>
           <Card>
             <CardItem>
+            
+              
               <Icon name="arrow-down" />
-              <Text>Receive</Text>
+              <Text>Receive</Text> 
+              
               <Right>
-                <Text style={{alignSelf: 'flex-end'}}>3.00 PHR</Text>
-                <Text style={{alignSelf: 'flex-end', fontSize: 12}}>2018-06-26 03:28</Text>
+                <Text style={{alignSelf: 'flex-end'}}>{data.change / 100000000} PHR</Text>
+                <Text style={{alignSelf: 'flex-end', fontSize: 12}}>{data.time_utc}</Text>
               </Right>
             </CardItem>
           </Card>
-          
+          </Content>
+          </ListItem>
+          } />
            
 
           </Row>

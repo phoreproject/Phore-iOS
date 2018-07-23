@@ -20,8 +20,17 @@ import { StatusBar } from 'react-native';
 import styles from "./styles";
 import QRCode from 'react-native-qrcode';
 import constants from '../../components/constants';
+import * as RealmDB from '../../realm/RealmSchemas';
+import * as hdkey from '../../components/hdkey';
+
 
 class ExportAccount extends Component {
+
+  componentWillMount() {
+    const wif = RealmDB.getWIF(0)
+    console.log('wif = ' + wif)
+
+  }
   render() {
     const key = constants.xpub;
     return (

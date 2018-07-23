@@ -2,7 +2,7 @@ import "../../shim";
 
 let Buffer = require('safe-buffer').Buffer
 var bs58check = require('bs58check')
-let crypto = require('./crypto')
+let crypto = require('react-native-crypto')
 let typeforce = require('typeforce')
 let ecc = require('tiny-secp256k1')
 
