@@ -153,8 +153,8 @@ class MyWallet extends Component {
             <CardItem>
             
               
-              <Icon name="arrow-down" />
-              <Text>Receive</Text> 
+              <Icon name={data.change > 0 ? "arrow-down" : "paper-plane"} />
+              <Text>{data.change > 0 ? 'Receive' : 'Send'}</Text> 
               
               <Right>
                 <Text style={{alignSelf: 'flex-end'}}>{data.change / 100000000} PHR</Text>
