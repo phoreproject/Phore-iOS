@@ -23,6 +23,7 @@ import styles from "./styles1";
 import * as bip39 from '../../components/bip39';
 import * as phore from '../../wallet';
 import * as RealmDB from '../../realm/RealmSchemas';
+import * as hdkey from '../../components/hdkey';
 
 
 
@@ -54,6 +55,11 @@ class BackupMnemonic extends Component {
       this.setState({ pubkey: pubkey })
       var address = phore.getAddressFromKeyPair(keypair);
       this.setState({ address: address })
+      var hdk = hdkey.rnHDKey(seed)
+      var xpub = hdk.publicExtendedKey
+      var xprv = hdk.privateExtendedKey
+
+      console.log(xprv)
       
       RealmDB.createReceivingAddress(address)
       
@@ -61,9 +67,7 @@ class BackupMnemonic extends Component {
 
     componentDidMount() {
 
-      var WIF = this.state.WIF
-
-      RealmDB.createWIF(WIF)
+      
       
     };
 
