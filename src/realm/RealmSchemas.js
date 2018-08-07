@@ -371,6 +371,29 @@ export const getWalletIterationRecAddress = (index) => {
 	}
 
 
+class FullWallet {
+	static schema = {
+		name: 'FullWallet',
+		primaryKey: 'wid',
+		properties: {
+			wid: 'string',
+			seed: 'data',
+			WIF: 'string',
+			recaddress: 'string',
+			xprv: 'string',
+			xpub: 'string'
+
+			
+
+		}
+	}
+
+	static get() {
+		return Array.from(realm.objects('FullWallet'))
+	}
+}
+
+
 class Xpub {}
 
 class Xpriv {}
@@ -414,9 +437,10 @@ export const realm = new Realm({
 		WalletItem,
 		TheWalletSeed,
 		WalletIteration,
-		WalletMaster
+		WalletMaster,
+		FullWallet
 		
 		],
-	schemaVersion: 12
+	schemaVersion: 13
 	}
 );

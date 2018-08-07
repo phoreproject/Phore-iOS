@@ -37,7 +37,9 @@ class BackupMnemonic extends Component {
             keypair: '',
             WIF: '',
             pubkey: '',
-            address: '' };
+            address: '',
+            xpub: '',
+            xprv: '' };
   
   componentWillMount() {
     bip39.generateMnemonic().then(response => {
@@ -57,7 +59,9 @@ class BackupMnemonic extends Component {
       this.setState({ address: address })
       var hdk = hdkey.rnHDKey(seed)
       var xpub = hdk.publicExtendedKey
+      this.setState({ xpub: xpub })
       var xprv = hdk.privateExtendedKey
+      this.setState({ xprv: xprv })
 
       console.log(xprv)
       
@@ -71,7 +75,24 @@ class BackupMnemonic extends Component {
       
     };
 
-    
+    addWallet = () => {
+      RealmDB.realm.write(() => {
+        var wid = '0'
+        var seed = this.state.seed
+        var WIF = this.state.WIF
+        var recaddress = this.state.address
+        var xpub = this.state.xpub
+        var xprv = this.state.xprv
+        RealmDB.realm.create('FullWallet', {
+          wid: wid,
+          seed: seed,
+          WIF: WIF,
+          recaddress: recaddress,
+          xpub: xpub,
+          xprv: xprv
+        })
+      })
+    }
     
 
    
@@ -142,7 +163,7 @@ class BackupMnemonic extends Component {
             
             
            console.log(seed)
-            RealmDB.createWalletItemShortened('1', seed)
+            this.addWallet()
             this.props.navigation.navigate("MyWallet")
 
           }
