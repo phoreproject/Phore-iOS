@@ -30,7 +30,7 @@ class Receive extends Component {
   }
 
   componentWillMount() {
-    const recaddress = RealmDB.getReceivingAddress(0)
+    const recaddress = RealmDB.getReceivingAddressFromFullWallet(0)
     console.log(recaddress)
     this.setState({ pkeystring: recaddress })
     

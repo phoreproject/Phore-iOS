@@ -77,7 +77,7 @@ class BackupMnemonic extends Component {
 
     addWallet = () => {
       RealmDB.realm.write(() => {
-        var wid = '0'
+        var wid = '2'
         var seed = this.state.seed
         var WIF = this.state.WIF
         var recaddress = this.state.address
@@ -164,7 +164,7 @@ class BackupMnemonic extends Component {
             
            console.log(seed)
             this.addWallet()
-            this.props.navigation.navigate("MyWallet")
+            this.props.navigation.navigate("Receive")
 
           }
 

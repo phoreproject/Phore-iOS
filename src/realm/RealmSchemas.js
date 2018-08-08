@@ -393,6 +393,12 @@ class FullWallet {
 	}
 }
 
+export const getReceivingAddressFromFullWallet = (index) => {
+
+	const address = Array.from(realm.objects(FullWallet))[index]['recaddress'];
+	return address;
+	}
+
 
 class Xpub {}
 
