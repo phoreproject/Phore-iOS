@@ -24,6 +24,7 @@ import * as bip39 from '../../components/bip39';
 import * as phore from '../../wallet';
 import * as RealmDB from '../../realm/RealmSchemas';
 import * as hdkey from '../../components/hdkey';
+import * as uuid from "react-native-uuid";
 
 
 
@@ -77,7 +78,7 @@ class BackupMnemonic extends Component {
 
     addWallet = () => {
       RealmDB.realm.write(() => {
-        var wid = '2'
+        var wid = uuid.v1()
         var seed = this.state.seed
         var WIF = this.state.WIF
         var recaddress = this.state.address
