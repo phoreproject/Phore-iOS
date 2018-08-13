@@ -35,6 +35,32 @@ export const getAddresses = () => {
 	return AddressItem.get();
 }
 
+class ChangeAddress {
+	static schema = {
+		name: 'ChangeAddress',
+		primaryKey: 'address',
+		properties: {
+			address: 'string'
+			
+		}
+	}
+
+	static get() {
+		return Array.from(realm.objects('ChangeAddress'))
+	}
+}
+
+export const createChangeAddress = (address) => {
+
+	realm.write(() => {
+		realm.create('ChangeAddress', {address: address})
+	})
+	}
+
+export const getChangeAddresses = () => {
+	return ChangeAddress.get();
+}
+
 class Currency {
 	static schema = {
 		name: 'Currency',
@@ -470,9 +496,10 @@ export const realm = new Realm({
 		TheWalletSeed,
 		WalletIteration,
 		WalletMaster,
-		FullWallet
+		FullWallet,
+		ChangeAddress
 		
 		],
-	schemaVersion: 13
+	schemaVersion: 14
 	}
 );
