@@ -26,13 +26,17 @@ import * as hdkey from '../../components/hdkey';
 
 class ExportAccount extends Component {
 
-  componentWillMount() {
-    const wif = RealmDB.getWIF(0)
-    console.log('wif = ' + wif)
+  state = {
+    xpub: ''
+  }
+
+  componentDidMount() {
+    const xpub = RealmDB.getXpubFromFullWallet(0)
+    this.setState({xpub: xpub})
 
   }
   render() {
-    const key = constants.xpub;
+    const key = this.state.xpub;
     return (
       <Container style={styles.container}>
         <Header>

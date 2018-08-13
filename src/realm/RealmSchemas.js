@@ -275,6 +275,8 @@ export const getWIF = (index) => {
 	return wifkey;
 	}
 
+
+
 class PublicKey { 
 	static schema = {
 		name: 'PublicKey',
@@ -397,6 +399,30 @@ export const getReceivingAddressFromFullWallet = (index) => {
 
 	const address = Array.from(realm.objects(FullWallet))[index]['recaddress'];
 	return address;
+	}
+
+export const getWIFFromFullWallet = (index) => {
+
+	const wifkey = Array.from(realm.objects(FullWallet))[index]['WIF'];
+	return wifkey;
+	}
+
+export const getTheWalletSeedFromFullWallet = (index) => {
+
+	const wseed = Array.from(realm.objects(FullWallet))[index]['seed'];
+	return wseed;
+	}
+
+export const getXpubFromFullWallet = (index) => {
+
+	const wxpub = Array.from(realm.objects(FullWallet))[index]['xpub'];
+	return wxpub;
+	}
+
+export const getXprvFromFullWallet = (index) => {
+
+	const wxprv = Array.from(realm.objects(FullWallet))[index]['xprv'];
+	return wxprv;
 	}
 
 
